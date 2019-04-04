@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 04-Abr-2019 às 06:43
+-- Generation Time: 04-Abr-2019 às 23:04
 -- Versão do servidor: 10.1.38-MariaDB
 -- versão do PHP: 7.3.3
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `appstore_db`
 --
+CREATE DATABASE IF NOT EXISTS `appstore_db` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `appstore_db`;
 
 -- --------------------------------------------------------
 
@@ -30,9 +32,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categoria` (
   `id` int(11) NOT NULL,
-  `titulo` varchar(15) NOT NULL,
-  `cor` char(7) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `titulo` varchar(15) CHARACTER SET latin1 NOT NULL,
+  `cor` char(7) CHARACTER SET latin1 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Extraindo dados da tabela `categoria`
@@ -52,8 +54,8 @@ INSERT INTO `categoria` (`id`, `titulo`, `cor`) VALUES
 
 CREATE TABLE `cliente` (
   `id` int(11) NOT NULL,
-  `nome` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `nome` varchar(50) CHARACTER SET latin1 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Extraindo dados da tabela `cliente`
@@ -73,7 +75,14 @@ CREATE TABLE `cliente_modulo` (
   `Cliente_id` int(11) NOT NULL,
   `Modulo_id` int(11) NOT NULL,
   `ativo` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `cliente_modulo`
+--
+
+INSERT INTO `cliente_modulo` (`Cliente_id`, `Modulo_id`, `ativo`) VALUES
+(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -83,12 +92,12 @@ CREATE TABLE `cliente_modulo` (
 
 CREATE TABLE `modulo` (
   `id` int(11) NOT NULL,
-  `nome` varchar(50) NOT NULL,
-  `icone` varchar(30) NOT NULL,
+  `nome` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `icone` varchar(30) CHARACTER SET latin1 NOT NULL,
   `Categoria_id` int(11) NOT NULL,
   `preco` double(6,2) DEFAULT NULL,
-  `cor_bg` char(7) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `cor_bg` char(7) CHARACTER SET latin1 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Extraindo dados da tabela `modulo`

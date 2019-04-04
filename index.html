@@ -39,9 +39,9 @@
 				<p class="row modulo-preco justify-content-center" v-show = "modulo.status != ' ' ">
 					Adquirido
 				</p>
-				<button class="btn btn-success justify-content-center align-bottom" v-show = "modulo.status == ' ' ">Contratar</button>
-				<button class="btn btn-success justify-content-center" v-show = "modulo.status == '0' ">Ativar</button>
-				<button class="btn btn-danger justify-content-center" v-show = "modulo.status == '1' ">Desativar</button>
+				<button class="btn btn-success justify-content-center align-bottom" v-show = "modulo.status == ' ' " @click='insertRecord(modulo.id,0);'>Contratar</button>
+				<button class="btn btn-success justify-content-center" v-show = "modulo.status == '0'" @click='updateRecord(modulo.id,1);'>Ativar</button>
+				<button class="btn btn-danger justify-content-center" v-show = "modulo.status == '1' " @click='updateRecord(modulo.id,0);'>Desativar</button>
 			</div>
 		</div>
 
