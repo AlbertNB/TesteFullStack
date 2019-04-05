@@ -25,9 +25,6 @@ $method = $_SERVER['REQUEST_METHOD'];
 $con = mysqli_connect($host, $user, $password,$dbname); 
 $con->set_charset("utf8");
 
-
-//$input = json_decode(file_get_contents('php://input'),true);
-
 if (!$con) {
   die("Connection failed: " . mysqli_connect_error());
 }
@@ -38,7 +35,7 @@ switch ($method) {
       $sql = "SELECT modulo.id,nome,categoria.titulo AS categoria,cor_bg AS cor,categoria.cor AS cor_cat,icone,preco,cliente_modulo.ativo AS status FROM modulo LEFT JOIN cliente_modulo ON modulo.id = cliente_modulo.Modulo_id AND cliente_modulo.Cliente_id = ". $cliente_id . " LEFT JOIN categoria ON Categoria_id = categoria.id ORDER BY modulo.id";
 	break;
 	case 'POST':
-		$request = $_REQUEST['request'];
+		$request =    $_REQUEST['request'];
 		$modulo_id  = $_REQUEST['modulo_id'];
 		$cliente_id = $_REQUEST['cliente_id'];
 		$ativo      = $_REQUEST['ativo'];
@@ -53,13 +50,11 @@ switch ($method) {
 // run SQL statement
 $result = mysqli_query($con,$sql);
 
-// die if SQL statement failed
-if (!$result) {
-  http_response_code(404);
-  die(mysqli_error($con));
-}
-
 if($method == 'GET'){
+	if (!$result) {
+		http_response_code(404);
+		die(mysqli_error($con));
+	}
 $return = "[";
 	for ($i=0 ; $i<mysqli_num_rows($result) ; $i++) {
 	  $encode = utf8_decode(json_encode(mysqli_fetch_object($result)));

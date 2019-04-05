@@ -1,4 +1,3 @@
-
 var app = new Vue({
   el: '#vueapp',
   data: {
@@ -31,31 +30,15 @@ var app = new Vue({
                      	                         
                     });
                 },
-				updateRecord: function(id,value){
-				 // Read value from Textbox
-				   axios.post("http://localhost/api/api.php", {
-					 request: 1,
+			   updateStatus: function(request,id,value){
+				   axios.post("http://localhost/api/api.php",{ name: 'Abcd' } ,{ params: {
+					 request: request,
 					 modulo_id: id,
 					 cliente_id: 1,
-					 ativo: value
-				   })
+				     ativo: value }
+					 })
 				   .then(function (response) {
-					 alert(response.data);
-				   })
-				   .catch(function (error) {
-					 console.log(error);
-				   });
-				 
-			   },
-			   insertRecord: function(id,value){
-				   axios.post("http://localhost/api/api.php", {
-					 request: 2,
-					 modulo_id: id,
-					 cliente_id: 1,
-					 ativo: value
-				   })
-				   .then(function (response) {
-					 alert(response.data);
+					 this.getModulos();
 				   })
 				   .catch(function (error) {
 					 console.log(error);

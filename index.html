@@ -39,17 +39,16 @@
 				<p class="row modulo-preco justify-content-center" v-show = "modulo.status != ' ' ">
 					Adquirido
 				</p>
-				<button class="btn btn-success justify-content-center align-bottom" v-show = "modulo.status == ' ' " @click='insertRecord(modulo.id,0);'>Contratar</button>
-				<button class="btn btn-success justify-content-center" v-show = "modulo.status == '0'" @click='updateRecord(modulo.id,1);'>Ativar</button>
-				<button class="btn btn-danger justify-content-center" v-show = "modulo.status == '1' " @click='updateRecord(modulo.id,0);'>Desativar</button>
+				<button class="btn btn-success justify-content-center align-bottom" v-show = "modulo.status == ' ' " @click='updateStatus(2,modulo.id,0);'>Contratar</button>
+				<button class="btn btn-success justify-content-center" v-show = "modulo.status == '0'" @click='updateStatus(1,modulo.id,1);'>Ativar</button>
+				<button class="btn btn-danger justify-content-center" v-show = "modulo.status == '1' " @click='updateStatus(1,modulo.id,0);'>Desativar</button>
 			</div>
 		</div>
-
-		
 	</div>
+	
 </div> 
 
-	
+	<script src="./script/ajax.js" type="text/javascript"></script>
 	<script src="./script/vue.js" type="text/javascript"></script>
 	
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

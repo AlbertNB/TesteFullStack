@@ -41,10 +41,12 @@ body{
 	font-style: bold;
 	text-align: center;
 	margin: 10px;
+	min-height: 100px;
 }
 
 .modulo-preco{
 	text-align: center;
+	min-height: 50px;
 }
 
 .btn{
