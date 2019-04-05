@@ -18,7 +18,7 @@
 
 	<div class="container">
 	<div class="page-header">
-		<h1>AppStore</h1>
+		<h1>AppStore - Módulos</h1>
 	</div>
 
 	<div class="container main-container" id="vueapp">
@@ -39,6 +39,7 @@
 				<p class="row modulo-preco justify-content-center" v-show = "modulo.status == '0' || modulo.status == '1' ">
 					Adquirido
 				</p>
+				<button type="button" class="btn btn-info justify-content-center align-bottom"><i class="fas fa-eye"></i> Ver Mais</button>
 				<button class="btn btn-success justify-content-center align-bottom" v-show = "modulo.status != '0' && modulo.status != '1'" @click='updateStatus(2,modulo.id,0);'>Contratar</button>
 				<button class="btn btn-success justify-content-center" v-show = "modulo.status == '0'" @click='updateStatus(1,modulo.id,1);'>Ativar</button>
 				<button class="btn btn-danger justify-content-center" v-show = "modulo.status == '1' " @click='updateStatus(1,modulo.id,0);'>Desativar</button>
