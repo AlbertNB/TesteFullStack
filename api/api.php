@@ -38,18 +38,17 @@ switch ($method) {
       $sql = "SELECT modulo.id,nome,categoria.titulo AS categoria,cor_bg AS cor,categoria.cor AS cor_cat,icone,preco,cliente_modulo.ativo AS status FROM modulo LEFT JOIN cliente_modulo ON modulo.id = cliente_modulo.Modulo_id AND cliente_modulo.Cliente_id = ". $cliente_id . " LEFT JOIN categoria ON Categoria_id = categoria.id ORDER BY modulo.id";
 	break;
 	case 'POST':
-		$request = $_POST['request'];
-		$modulo_id  = $_POST['modulo_id'];
-		$cliente_id = $_POST['cliente_id'];
-		$ativo      = $_POST['ativo'];
+		$request = $_REQUEST['request'];
+		$modulo_id  = $_REQUEST['modulo_id'];
+		$cliente_id = $_REQUEST['cliente_id'];
+		$ativo      = $_REQUEST['ativo'];
 			if($request == 1){
-				$sql = "UPDATE cliente_modulo SET ativo = ".$ativo." WHERE 'cliente_modulo'.'Cliente_id' = " .$cliente_id . " AND 'cliente_modulo'.'Modulo_id' = ". $modulo_id . "; " ;
+				$sql = "UPDATE `cliente_modulo` SET `ativo` = ".$ativo." WHERE `cliente_modulo`.`Cliente_id` = " .$cliente_id . " AND `cliente_modulo`.`Modulo_id` = ". $modulo_id . "; " ;
 			}elseif($request == 2){
-				$sql = "INSERT INTO 'cliente_modulo' ('Cliente_id', 'Modulo_id', 'ativo') VALUES ('".$cliente_id."','" .$modulo_id."','".$ativo."');";
+				$sql = "INSERT INTO `cliente_modulo` (`Cliente_id`, `Modulo_id`, `ativo`) VALUES ('".$cliente_id."','" .$modulo_id."','".$ativo."');";
 			}
-		echo $sql;
     break;
-}
+}	
 
 // run SQL statement
 $result = mysqli_query($con,$sql);
