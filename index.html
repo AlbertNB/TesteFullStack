@@ -23,23 +23,23 @@
 
 	<div class="container main-container" id="vueapp">
 		<div class="row linha justify-content-center" v-for="n in 3">
-			<div class= "col-lg-2 modulo" v-for="modulo in modulos.slice(((n-1)*5)+0,((n-1)*5)+5)">
+			<div class= "col-lg-2 modulo" v-for="(modulo,index) in modulos.slice(((n-1)*5)+0,((n-1)*5)+5)">
 				<h6 class="row modulo-categoria justify-content-center" v-bind:style="{ backgroundColor: modulo.cor_cat }">{{modulo.categoria}}</h6>
 				<div class="row modulo-icone justify-content-center" v-bind:style="{ backgroundColor: modulo.cor }">
 					<i class="fas" v-bind:class = "modulo.icone"></i>
 				</div>
 				<h5 class="row modulo-titulo justify-content-center">{{modulo.nome}}</h5>
 
-				<p class="row modulo-preco justify-content-center" v-show = "modulo.preco != '0.00' && modulo.status == ' ' ">
+				<p class="row modulo-preco justify-content-center" v-show = "modulo.preco != '0.00' && modulo.status != '0' && modulo.status != '1' ">
 					R$ {{modulo.preco}} por colaborador por mês
 				</p>
-				<p class="row modulo-preco justify-content-center" v-show = "modulo.preco == '0.00' && modulo.status == ' ' ">
+				<p class="row modulo-preco justify-content-center" v-show = "modulo.preco == '0.00' && modulo.status != '0' && modulo.status != '1' ">
 					Gratuito
 				</p>
-				<p class="row modulo-preco justify-content-center" v-show = "modulo.status != ' ' ">
+				<p class="row modulo-preco justify-content-center" v-show = "modulo.status == '0' || modulo.status == '1' ">
 					Adquirido
 				</p>
-				<button class="btn btn-success justify-content-center align-bottom" v-show = "modulo.status == ' ' " @click='updateStatus(2,modulo.id,0);'>Contratar</button>
+				<button class="btn btn-success justify-content-center align-bottom" v-show = "modulo.status != '0' && modulo.status != '1'" @click='updateStatus(2,modulo.id,0);'>Contratar</button>
 				<button class="btn btn-success justify-content-center" v-show = "modulo.status == '0'" @click='updateStatus(1,modulo.id,1);'>Ativar</button>
 				<button class="btn btn-danger justify-content-center" v-show = "modulo.status == '1' " @click='updateStatus(1,modulo.id,0);'>Desativar</button>
 			</div>
@@ -47,8 +47,6 @@
 	</div>
 	
 </div> 
-
-	<script src="./script/ajax.js" type="text/javascript"></script>
 	<script src="./script/vue.js" type="text/javascript"></script>
 	
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

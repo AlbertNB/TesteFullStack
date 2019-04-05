@@ -22,7 +22,6 @@ body{
 }
 
 .modulo-categoria{
-	background-color: purple;
 	text-align: center;
 	padding: 5px;
 }
@@ -32,8 +31,7 @@ body{
 	color: white;
 	text-align: center;
 	padding: 10px;
-	margin-top: -5px; 
-	background-color: green;
+	margin-top: -8px; 
 }
 
 .modulo-titulo{

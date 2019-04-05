@@ -20,6 +20,7 @@ var app = new Vue({
                             self.errorMessage = response.data.message;    
                         }else{
                             self.modulos = response.data;
+							console.log(self.modulos);
 
                             self.modulos.forEach(modulo =>{
                     		if (modulo.status == null) {
@@ -37,12 +38,14 @@ var app = new Vue({
 					 cliente_id: 1,
 				     ativo: value }
 					 })
-				   .then(function (response) {
-					 this.getModulos();
-				   })
 				   .catch(function (error) {
 					 console.log(error);
 				   });
+				   this.modulos.forEach(modulo =>{
+                    		if (modulo.id == id) {
+                    			modulo.status = value;
+                    		}
+                   		});
 				 }
 			   				
             }
