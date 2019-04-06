@@ -30,7 +30,12 @@ var app = new Vue({
                         }
                      	                         
                     });
-                },
+				},
+				getModulo: function(){
+					return this.modulos.find(function(modulo) {
+						return new URLSearchParams(location.search).get('id') == modulo.id
+					})
+				},
 			   updateStatus: function(request,id,value){
 				   axios.post("http://localhost/api/api.php",{ name: 'Abcd' } ,{ params: {
 					 request: request,
@@ -45,7 +50,7 @@ var app = new Vue({
                     		if (modulo.id == id) {
                     			modulo.status = value;
                     		}
-                   		});
+						   });
 				 }
 			   				
             }
