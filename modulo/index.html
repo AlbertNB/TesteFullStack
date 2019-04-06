@@ -17,16 +17,45 @@
 <body>
 
 	<div class="container" id="vueapp">
-	<div class="page-header">
-        <h1>{{ getModulo().nome }}</h1>
-        
-	</div>
+        <div class="page-header">
+            <h1>{{ getModulo().nome }}</h1>
+        </div>
 
-	<div class="container" >
-		
-	</div>
-	
-</div> 
+        <div class="container main-container" >
+            <h2 class="title">Informações do Módulo</h2>
+            <div class = "row linha-modulo">
+                <div class="col-lg-2 modulo-single">
+                    <h6 class="row modulo-categoria justify-content-center" v-bind:style="{ backgroundColor: getModulo().cor_cat }">{{getModulo().categoria}}</h6>
+                    <div class="row modulo-icone justify-content-center" v-bind:style="{ backgroundColor: getModulo().cor }">
+                        <i class="fas" v-bind:class = "getModulo().icone"></i>
+                    </div>
+                </div>
+                <div class="col-lg-4 justify-content-start infos">
+                    <p class="row modulo-preco" v-show = "getModulo().preco != '0.00' && getModulo().status != '0' && getModulo().status != '1' ">
+                        R$ {{ Number(getModulo().preco).toLocaleString('pt-BR', { minimumFractionDigits: 2 }) }} por colaborador por mês
+                    </p>
+                    <p class="row modulo-preco" v-show = "getModulo().preco == '0.00' && getModulo().status != '0' && getModulo().status != '1' ">
+                        Gratuito
+                    </p>
+                    <p class="row modulo-preco" v-show = "getModulo().status == '0'">
+                        Adquirido
+                    </p>
+                    <p class="row modulo-preco" v-show = "getModulo().status == '1'">
+                        Ativo
+                    </p>
+                    <button class="btn btn-success" v-show = "getModulo().status != '0' && getModulo().status != '1'" @click='updateStatus(2,getModulo().id,0);'>Contratar</button>
+				    <button class="btn btn-success" v-show = "getModulo().status == '0'" @click='updateStatus(1,getModulo().id,1);'>Ativar</button>
+				    <button class="btn btn-danger" v-show = "getModulo().status == '1' " @click='updateStatus(1,getModulo().id,0);'>Desativar</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class = "col-lg">
+                    <h4>Descrição</h3>
+                    <p>{{getModulo().descricao}}</p>
+                </div>
+            </div>
+        </div>
+    </div> 
 	<script src="/script/vue.js" type="text/javascript"></script>
 	
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

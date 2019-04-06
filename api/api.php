@@ -32,7 +32,7 @@ if (!$con) {
 switch ($method) {
     case 'GET':
 	  $cliente_id = $_GET['cliente_id'];
-      $sql = "SELECT modulo.id,nome,categoria.titulo AS categoria,cor_bg AS cor,categoria.cor AS cor_cat,icone,preco,cliente_modulo.ativo AS status FROM modulo LEFT JOIN cliente_modulo ON modulo.id = cliente_modulo.Modulo_id AND cliente_modulo.Cliente_id = ". $cliente_id . " LEFT JOIN categoria ON Categoria_id = categoria.id ORDER BY modulo.id";
+      $sql = "SELECT modulo.id,nome,categoria.titulo AS categoria,cor_bg AS cor,categoria.cor AS cor_cat,icone,preco,cliente_modulo.ativo AS status, modulo.descricao FROM modulo LEFT JOIN cliente_modulo ON modulo.id = cliente_modulo.Modulo_id AND cliente_modulo.Cliente_id = ". $cliente_id . " LEFT JOIN categoria ON Categoria_id = categoria.id ORDER BY modulo.id";
 	break;
 	case 'POST':
 		$request =    $_REQUEST['request'];

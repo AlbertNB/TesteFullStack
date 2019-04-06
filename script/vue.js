@@ -4,13 +4,12 @@ var app = new Vue({
   	modulos:[]
   	},
 
-    mounted: function(){
-        console.log("mounted");
-        this.getModulos();
+	  created: function(){
+		this.getModulos();
+		this.$forceUpdate();
     },
             
             methods:{
-            
                 getModulos: function(){
                     var self = this;
                     axios.get("http://localhost/api/api.php", {params:  {cliente_id: 1}}) 
@@ -33,25 +32,24 @@ var app = new Vue({
 				},
 				getModulo: function(){
 					return this.modulos.find(function(modulo) {
-						return new URLSearchParams(location.search).get('id') == modulo.id
+						return new URLSearchParams(location.search).get('id') == modulo.id;
 					})
 				},
 			   updateStatus: function(request,id,value){
-				   axios.post("http://localhost/api/api.php",{ name: 'Abcd' } ,{ params: {
+				    axios.post("http://localhost/api/api.php",{ name: 'Abcd' } ,{ params: {
 					 request: request,
 					 modulo_id: id,
 					 cliente_id: 1,
 				     ativo: value }
 					 })
-				   .catch(function (error) {
+				    .catch(function (error) {
 					 console.log(error);
-				   });
-				   this.modulos.forEach(modulo =>{
-                    		if (modulo.id == id) {
-                    			modulo.status = value;
-                    		}
-						   });
-				 }
-			   				
+				    });
+					this.modulos.forEach(modulo =>{
+						if (modulo.id == id) {
+							modulo.status = value;
+						}
+					});
+				 }			   				
             }
   })
